@@ -28,12 +28,45 @@ function consonantCheck(vowelCheckedWords) {
     let consonants = "";
     let newWord = "";
     let stop = 0
-    for (let i = 0; i <= word.length && stop != 1; i++) {
-      if (word.charAt(i) === "b" || word.charAt(i) === "B" || word.charAt(i) === "c" || word.charAt(i) === "C" || word.charAt(i) === "d" || word.charAt(i) === "D" || word.charAt(i) === "f" || word.charAt(i) === "F" || word.charAt(i) === "g" || word.charAt(i) === "G" || word.charAt(i) === "h" ||       word.charAt(i) === "H" || word.charAt(i) === "j" || word.charAt(i) === "J" || word.charAt(i) === "k"|| word.charAt(i) === "K" || word.charAt(i) === "l"|| word.charAt(i) === "L"|| word.charAt(i) === "m"|| word.charAt(i) === "M" || word.charAt(i) === "n"|| word.charAt(i) === "N"|| word.charAt(i) === "p"|| word.charAt(i) === "P" || word.charAt(i) === "q"|| word.charAt(i) === "Q"|| word.charAt(i) === "r"|| word.charAt(i) === "R"|| word.charAt(i) === "s"|| word.charAt(i) === "S"|| word.charAt(i) === "t"|| word.charAt(i) === "T"|| word.charAt(i) === "v"|| word.charAt(i) === "V"||           word.charAt(i) === "w"|| word.charAt(i) === "W"|| word.charAt(i) === "x"|| word.charAt(i) === "X"|| word.charAt(i) === "y"|| word.charAt(i) === "Y"|| word.charAt(i) === "z"|| word.charAt(i) === "Z") {
-        consonants = consonants + word.charAt(i);
+    let qu = "";
+    let qulessWord = "";
+    let quStart = "";
+    if (word.charAt(0) === "q" && word.charAt(1) === "u") {
+      qu = "qu";
+      qulessWord = word.slice(2, word.length);
+    } else if (word.charAt(0) === "Q" && word.charAt(1) === "U") {
+      qu = "QU";
+      qulessWord = word.slice(2, word.length);
+    } else if (word.charAt(0) === "Q" && word.charAt(1) === "u") {
+      qu = "Qu";
+      qulessWord = word.slice(2, word.length);
+    } else if (word.charAt(0) === "q" && word.charAt(1) === "U") {
+      qu = "qU";
+      qulessWord = word.slice(2, word.length);
+    } else {
+      qulessWord = word;
+    }
+    for (let i = 0; i <= qulessWord.length && stop != 1; i++) {
+      if (qulessWord.charAt(i) === "q" && qulessWord.charAt(i+1) === "u") {
+        quStart = quStart + "qu";
+        qulessWord = qulessWord.slice(i+1, qulessWord.length);
+      } else if (qulessWord.charAt(i) === "Q" && qulessWord.charAt(i+1) === "U") {
+        quStart = quStart + "QU";
+        qulessWord = qulessWord.slice(i+1, qulessWord.length);
+      }
+      else if (qulessWord.charAt(i) === "Q" && qulessWord.charAt(i+1) === "u") {
+        quStart = quStart + "Qu";
+        qulessWord = qulessWord.slice(i+1, qulessWord.length);
+      }
+      else if (qulessWord.charAt(i) === "q" && qulessWord.charAt(i+1) === "U") {
+        quStart = quStart + "qU";
+        qulessWord = qulessWord.slice(i+1, qulessWord.length);
+      }
+       if (qulessWord.charAt(i) === "b" || qulessWord.charAt(i) === "B" || qulessWord.charAt(i) === "c" || qulessWord.charAt(i) === "C" || qulessWord.charAt(i) === "d" || qulessWord.charAt(i) === "D" || qulessWord.charAt(i) === "f" || qulessWord.charAt(i) === "F" || qulessWord.charAt(i) === "g" || qulessWord.charAt(i) === "G" || qulessWord.charAt(i) === "h" ||       qulessWord.charAt(i) === "H" || qulessWord.charAt(i) === "j" || qulessWord.charAt(i) === "J" || qulessWord.charAt(i) === "k"|| qulessWord.charAt(i) === "K" || qulessWord.charAt(i) === "l"|| qulessWord.charAt(i) === "L"|| qulessWord.charAt(i) === "m"|| qulessWord.charAt(i) === "M" || qulessWord.charAt(i) === "n"|| qulessWord.charAt(i) === "N"|| qulessWord.charAt(i) === "p"|| qulessWord.charAt(i) === "P" ||qulessWord.charAt(i) === "Q" || qulessWord.charAt(i) === "q" ||qulessWord.charAt(i) === "r"|| qulessWord.charAt(i) === "R"|| qulessWord.charAt(i) === "s"|| qulessWord.charAt(i) === "S"|| qulessWord.charAt(i) === "t"|| qulessWord.charAt(i) === "T"|| qulessWord.charAt(i) === "v"|| qulessWord.charAt(i) === "V"||           qulessWord.charAt(i) === "w"|| qulessWord.charAt(i) === "W"|| qulessWord.charAt(i) === "x"|| qulessWord.charAt(i) === "X"|| qulessWord.charAt(i) === "y"|| qulessWord.charAt(i) === "Y"|| qulessWord.charAt(i) === "z"|| qulessWord.charAt(i) === "Z") {
+        consonants = consonants + qulessWord.charAt(i);
       } else {
-        let slicedWord = word.slice(i, word.length);
-        newWord = slicedWord + consonants + "ay";
+        let slicedWord = qulessWord.slice(i, qulessWord.length);
+        newWord = quStart + slicedWord + consonants + qu + "ay";
         newArray.push(newWord);
         stop = 1;
       }
@@ -43,7 +76,7 @@ function consonantCheck(vowelCheckedWords) {
    };
    let returnString1 = newArray.toString();
    let returnString2 = returnString1.replace(/,/g, " ");
-   console.log(returnString2);
+   return returnString2;
   });
 }
 
