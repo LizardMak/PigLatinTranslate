@@ -74,10 +74,11 @@ function consonantCheck(vowelCheckedWords) {
    } else {
     newArray.push(word);
    };
-   let returnString1 = newArray.toString();
-   let returnString2 = returnString1.replace(/,/g, " ");
-   return returnString2;
+
   });
+  let returnString1 = newArray.toString();
+  let returnString2 = returnString1.replace(/,/g, " ");
+  return returnString2;
 }
 
 function latinator(e) {
@@ -85,5 +86,7 @@ function latinator(e) {
   const checklessWords = document.getElementById("textInput").value;
   const vowelCheckedWords = vowelCheck(checklessWords);
   const consonantCheckedWords = consonantCheck(vowelCheckedWords);
+  let h2 = document.getElementById("results");
+  h2.innerText = consonantCheckedWords;
 }
 
